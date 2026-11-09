@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pinch</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header>
+    <div class="brand">Pinch</div>
+    <div class="status">
+      <span id="camStatus" class="pill">camera: starting</span>
+      <span id="gesture" class="pill">gesture: none</span>
+      <span id="classifier" class="pill">rules</span>
+      <span id="agentMode" class="pill">agent: ready</span>
+    </div>
+  </header>
+
+  <main id="board">
+    <canvas id="ink"></canvas>
+    <div id="items"></div>
+    <div id="cursor"></div>
+    <div id="help">
+      <b>Gestures</b><br>
+      Index finger up: draw<br>
+      Index + middle up: move without drawing<br>
+      Pinch: grab a card to move it, or flip a flashcard<br>
+      Open palm, hold 1.5 seconds: clear your drawing<br>
+      Fist: pause<br><br>
+      <b>Voice</b>: click the mic and say "make a concept map of the cell" or "quiz me on photosynthesis"
+    </div>
+  </main>
+
+  <aside id="camBox">
+    <video id="video" autoplay playsinline muted></video>
+    <canvas id="overlay"></canvas>
+  </aside>
+
+  <footer>
+    <button id="mic" title="Talk to Pinch">🎤 Talk</button>
+    <input id="textInput" placeholder="Or type: explain mitosis, chart my grades 80 85 92, quiz me..." autocomplete="off">
+    <button id="send">Send</button>
+    <button id="materialBtn" title="Paste lecture notes for the agent to use">Notes</button>
+    <details id="recorder">
+      <summary>Train gestures</summary>
+      <div class="recRow">
+        <select id="recLabel">
+          <option>draw</option><option>hover</option><option>pinch</option><option>palm</option><option>fist</option>
+        </select>
+        <span>Hold <b>R</b> to record</span>
+        <span id="recCount">0 samples</span>
+        <button id="recDownload">Download</button>
+      </div>
+    </details>
+  </footer>
+
+  <dialog id="materialDialog">
+    <p>Paste lecture notes or a chapter. The agent will use it when answering.</p>
+    <textarea id="material" rows="12"></textarea>
+    <form method="dialog"><button>Done</button></form>
+  </dialog>
+
+  <script type="module" src="/static/app.js"></script>
+</body>
+</html>
